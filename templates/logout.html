@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Logout</title>
+</head>
+<body>
+	 <button id="logout-btn">Logout</button>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+	<script src="/static/js/token.js"></script>
+	<button id="logout-button">Logout</button>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <!-- <script src="/static/js/token.js"></script> -->
+    <!-- <script>
+        document.cookie = 'access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        window.location.href = '/login';
+
+    </script> -->
+    <script>
+        function logout() {
+            localStorage.removeItem('jwt_token');
+            window.location.href = "/auth/users/me";
+        }
+
+		function setCookie1()   
+{  
+    document.cookie="name=Martin Roy";  
+     cookie1=  document.cookie;  
+}   
+
+function getCookie1()  
+{  
+    if(document.cookie.length!=0)  
+    {  
+    alert(document.cookie);  
+    }  
+    else  
+    {  
+        alert("Cookie not avaliable");  
+    }  
+}  
+
+function deleteCookie1()  
+{  
+    document.cookie=cookie1+";max-age=0";  
+    cookie1=document.cookie;  
+    alert("Cookie1 is deleted");  
+}  
+    </script>
+</head>
+<body>
+    <h1>Loginssss</h1>
+
+    <h1>Welcome to my App</h1>
+            <button onclick="logout()">Logout</button>
+			<input type="button" value="Set Cookie1" onclick="setCookie1()">  
+			<input type="button" value="Get Cookie1" onclick="getCookie1()">  
+			<input type="button" value="Delete Cookie1" onclick="deleteCookie1()">   
+    <!-- <form method="post" action="/api/auth/login">
+        <label>Email</label>
+        <input type="email" name="email" required>
+        <br>
+        <label>Password</label>
+        <input type="password" name="password" required>
+        <br>
+        <input type="submit" value="Login">
+    </form> -->
+
+    <form action="" method="POST">
+        
+        
+
+      </form>
+</body>
+</html>
+

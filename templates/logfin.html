@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Log in / Sign up</title>
+    <link rel="stylesheet" href="/static/css/fin.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" /> -->
+    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="/static/js/sample.js" crossorigin="anonymous"></script>
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js" crossorigin="anonymous"></script>
+
+    
+<!-- <script src="/static/js/token.js"></script> -->
+    <style>
+    
+      
+  </style>
+
+ <script>
+   // Delete access token cookie
+//document.cookie = 'access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+// Delete refresh token cookie
+//document.cookie = 'refresh_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+// Delete logged_in cookie
+//document.cookie = 'logged_in=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+// Remove access token from local storage
+//localStorage.removeItem('access_token');
+
+// Remove refresh token from local storage
+//localStorage.removeItem('refresh_token');
+
+// Redirect user to login page
+//window.location.href = '/login';
+
+  
+    </script>
+        <script src="/static/js/logggout.js"></script>
+</head>
+    
+
+<body style="background-image: url(/static/image/MicrosoftTeams-image.png)">
+    <div class="container ">
+        <div class="box"></div>
+        <div class="container-forms">
+            <div class="container-info">
+                <div class="info-item">
+                    <div class="table">
+                        <div class="table-cell">
+                            <p>
+                                Have an account?
+                            </p>
+                            <div class="btn">
+                                Log in
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="table">
+                        <div class="table-cell">
+                            <p>
+                                Don't have an account?
+                            </p>
+                            <div class="btn">
+                                Sign up
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-form ">
+            <form action="/login" method="POST">
+                <div class="form-item log-in">
+                    <div class="table">
+                        <div class="table-cell">
+                            <h2 class="title">LOGIN</h2>
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" name="email" id="email" placeholder="Email" required />
+                            <label for="password" class="form-label">Password</label>
+                            <!-- <input type="password" name="password" id="password" placeholder="password" autofocus=""
+                                required> -->
+                                <input  id="password-input" name="password"  type="password" placeholder="Password" required>
+                                <a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
+
+                            <!-- <form action="#" id="my_captcha_form"> -->
+                                <div class="g-recaptcha" data-sitekey="6Lel4Z4UAAAAAOa8LO1Q9mqKRUiMYl_00o5mXJrR"
+                                    data-callback="enableBtn"></div>
+
+
+                                {% if alert %}
+                                <script>
+                                    Swal.fire("Invalid username or password", "please ", "error");
+                                </script>
+                                {% endif %}
+                                <!-- 6Lc3KfsjAAAAAOj7MyELTLqlMpajDIrkBRuhSzM_ -->
+                                <div>
+                                    <input id="my_captcha_form"  class="btn" type="submit" value="Login">
+                                </div>
+                            <!-- </form> -->
+
+                            <!-- <div id="clickme">Fill Color Red</div>-->
+                    	<div id="mydiv" style="width: 100%; height: 200px;"></div> 
+
+                        <!-- <script>
+                            const bclick = document.getElementById('clickme');
+                            bclick.addEventListener('click', function red () { 
+                                mydiv.style.backgroundColor = 'red';
+                            });
+                        </script> -->
+
+                        <script>  
+                                const login = document.getElementById('my_captcha_form');                     
+                                login.addEventListener("click", function (evt) {
+                                    var response = grecaptcha.getResponse();
+                                if (response.length == 0) {
+                                    //reCaptcha  verified
+                                    Swal.fire("", "please verify the captcha!", "warning");
+                                    evt.preventDefault();
+                                    return false;
+                                }    
+                            });
+                  
+                        </script>
+
+
+
+                           
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <form  action="/register" method="POST" onsubmit="return checkForm(this);">
+
+                <div class="form-item sign-up">
+                    <div class="table">
+                        <div class="table-cell">
+                            <h2 class="title">REGISTER</h2>
+                            <label for="username" class="form-label">Username</label>
+                            <input id="username" name="name" type="text" placeholder="Username" required>
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" name="email" id="email" placeholder="Email" required />                            
+
+                            
+                           <div> 
+                            <!-- <label for="password" class="form-label">Password</label>
+                            <input type="password"  name="password" id="password" class="form-control pass"
+                                placeholder="password" autofocus="" required>
+                                <span id = "message" style="color:red; margin:0px 28px 0px 35px"> </span>  -->
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" name="password" id="password" class="pass" placeholder="Password" required>
+                                <a href="#" class="password-control1" onclick="return signup(this);"></a>
+
+                                <span class="error" style="color:red"></span> 
+                            </div>            
+
+                            <!-- <input type="password" name="confirm_password" id="confirm_password" class="form-control"
+                                placeholder="confirm password" required>
+                            <span id="confirm_password_msg" style="margin-top: 13px;"></span> -->
+                            <!-- <label for="password" class="form-label" >confirm password</label>
+                            <input type="password" name="confirm_password" id="passwordCon" class="passConfirm" placeholder="confirm password" required>
+                            <span id = "message1" style="color:red; margin: 0px 28px;"> </span>  -->
+                            <label for="password" class="form-label" >confirm password</label>
+                            <input type="password" name="confirm_password" id="confirm_password" class="passConfirm" placeholder="Password" required>
+                            <a href="#" class="password-control2" onclick="return password_confirm(this);"></a>
+
+                            <span class="error" style="color:red"></span>
+
+                            <div>
+                                <input id="" class="sign_btn" type="submit" value="Sign up">
+                            </div>
+
+                            <script>  
+                              
+                  
+                        </script>
+
+                        </div>
+                    </div>
+                </div>
+
+                {% if email_exists %}
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                <script>
+                    swal("This email is already registered.", "Please use a different email to Join Us.", "warning");
+                </script>
+                {% endif %}
+
+                {% if password_exists %}
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                <script>
+                    swal("Passwords do not match.", "Please check.", "warning");
+                </script>
+                {% endif %}
+
+
+                {% if alert1 %}
+                <!-- <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        {{ alert }}
+      </div> -->
+                <script>
+                    //   Swal.fire("User created successful ","Login to start journey with Us", "", "warning")
+
+                    Swal.fire("User created successful", "Login to start journey with Us", "success");</script>
+                {% endif %}
+
+            </form>
+        </div>
+    </div>
+    </div>
+
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+    <script src="/static/js/fin.js"></script>
+    <!-- <script async >
+
+        
+function show_hide_password(target){
+	var input = document.getElementById('password-input');
+	if (input.getAttribute('type') == 'password') {
+		target.classList.add('view');
+		input.setAttribute('type', 'text');
+	} else {
+		target.classList.remove('view');
+		input.setAttribute('type', 'password');
+	}
+	return false;
+}
+
+
+        window.addEventListener("load", startup);
+        function startup() {
+
+
+        document.getElementById("my_captcha_form").addEventListener("submit", function (evt) {
+    
+            var response = grecaptcha.getResponse();
+            //alert( response+"please verify you are humann!");
+            if (response.length == 0) {
+                //reCaptcha not verified
+                Swal.fire("", "please verify the captcha!", "warning");
+                evt.preventDefault();
+                //document.getElementById("button1").disabled = false;
+                return false;
+            }    
+        })
+    };
+    
+    
+    </script> -->
+
+    <!-- <script>
+
+        function checkForm(form)
+        {
+          if(form.username.value == "") {
+            alert("Error: Username cannot be blank!");
+            form.username.focus();
+            return false;
+          }
+          re = /^\w+$/;
+          if(!re.test(form.username.value)) {
+            alert("Error: Username must contain only letters, numbers and underscores!");
+            form.username.focus();
+            return false;
+          }
+      
+          if(form.password.value != "" && form.password.value == form.confirm_password.value) {
+            if(form.password.value.length < 8) {
+              //alert("Error: Password must contain at least six characters!");
+              document.getElementById("message").innerHTML = "**Password length must be atleast 8 characters";                
+              form.password.focus();
+              return false;
+            }
+            if(form.password.value == form.username.value) {
+              alert("Error: Password must be different from Username!");
+              form.password.focus();
+              return false;
+            }
+            re = /[0-9]/;
+            if(!re.test(form.password.value)) {
+              alert("Error: password must contain at least one number (0-9)!");
+              form.password.focus();
+              return false;
+            }
+            re = /[a-z]/;
+            if(!re.test(form.password.value)) {
+              alert("Error: password must contain at least one lowercase letter (a-z)!");
+              form.password.focus();
+              return false;
+            }
+            re = /[A-Z]/;
+            if(!re.test(form.password.value)) {
+              alert("Error: password must contain at least one uppercase letter (A-Z)!");
+              form.password.focus();
+              return false;
+            }
+          } else {
+            // alert("Error: Please check that you've entered and confirmed your password!");
+            document.getElementById("message1").innerHTML = "Passwords don\'t match";                
+            form.password.focus();
+            return false;
+          }
+      
+          alert("You entered a valid password: " + form.password.value);
+          return true;
+        }
+      
+      </script> -->
+
+
+      <script>
+
+        /*global $, document, window, setTimeout, navigator, console, location*/
+      $(document).ready(function () {
+      
+      'use strict';
+      
+      var usernameError = true,
+        emailError    = true,
+        passwordError = true,
+        passConfirm   = true;
+      
+      
+      // Form validation
+      $('input').blur(function () {
+      
+        
+        // PassWord
+        if ($(this).hasClass('pass')) {
+            if ($(this).val().length < 8) {
+                $(this).siblings('span.error').text('Please type at least 8 charcters').fadeIn().parent('.form-group').addClass('hasError');
+                passwordError = true;
+            } else {
+                $(this).siblings('.error').text('').fadeOut().parent('.form-group').removeClass('hasError');
+                passwordError = false;
+            }
+        }
+       
+      });
+
+      $('input').blur(function () {            
+          
+      // PassWord confirmation
+      if ($('.pass').val() !== $('.passConfirm').val()) {
+          $('.passConfirm').siblings('.error').text('Passwords don\'t match').fadeIn().parent('.form-group').addClass('hasError');
+          passConfirm = false;
+      } else {
+          $('.passConfirm').siblings('.error').text('').fadeOut().parent('.form-group').removeClass('hasError');
+          passConfirm = false;
+      }
+     
+    });
+      
+      });
+      
+      </script>
+</body>
+
+
+</html>
